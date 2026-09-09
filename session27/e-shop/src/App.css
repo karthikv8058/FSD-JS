@@ -1,0 +1,495 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+.app {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Header */
+
+header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+header h1 {
+  margin-bottom: 5px;
+}
+
+/* API Buttons */
+
+.api-demo {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Categories */
+
+.categories {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.categories button.active {
+  background: black;
+  color: white;
+}
+
+/* Products */
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 20px;
+}
+
+.product-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.product-card h3 {
+  min-height: 50px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Status */
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 20px;
+}
+
+.error {
+  background: #ffe0e0;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.message {
+  font-weight: bold;
+}
+
+/* movie */
+
+/* ================================
+   MODAL
+================================ */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  z-index: 1000;
+
+  overflow-y: auto;
+}
+
+.modal {
+  width: 100%;
+  max-width: 650px;
+
+  max-height: 95vh;
+
+  overflow-y: auto;
+
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 25px;
+}
+
+/* ================================
+   MODAL HEADER
+================================ */
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.modal-header p {
+  color: #777;
+}
+
+.close-button {
+  width: 35px;
+  height: 35px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #eee;
+
+  font-size: 18px;
+}
+
+/* ================================
+   SELECTED MOVIE
+================================ */
+
+.selected-movie {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  background: #f5f5f5;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  margin-bottom: 25px;
+}
+
+.selected-movie img {
+  width: 65px;
+  height: 80px;
+
+  object-fit: cover;
+
+  border-radius: 6px;
+}
+
+.selected-movie h3 {
+  margin: 0 0 5px;
+}
+
+.selected-movie p {
+  margin: 0;
+  color: #777;
+}
+
+/* ================================
+   FORM
+================================ */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group > label {
+  display: block;
+
+  font-weight: bold;
+
+  margin-bottom: 8px;
+}
+
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+
+  padding: 12px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* ================================
+   RADIO
+================================ */
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.option {
+  border: 1px solid #ddd;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.option input {
+  margin-right: 5px;
+}
+
+/* ================================
+   SEATS
+================================ */
+
+.seat-options {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+.seat {
+  position: relative;
+
+  border: 2px solid #ddd;
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.seat input {
+  position: absolute;
+  opacity: 0;
+}
+
+.seat span {
+  display: block;
+  font-size: 25px;
+}
+
+.seat strong {
+  display: block;
+  margin: 5px 0;
+}
+
+.seat small {
+  color: #777;
+}
+
+.seat.selected {
+  border-color: #e50914;
+  background: #fff0f0;
+}
+
+/* ================================
+   CHECKBOX
+================================ */
+
+.checkbox-group {
+  margin: 18px 0;
+}
+
+.checkbox-group label {
+  cursor: pointer;
+}
+
+.checkbox-group input {
+  margin-right: 8px;
+}
+
+.extra-price {
+  margin-left: 10px;
+  color: #e50914;
+  font-weight: bold;
+}
+
+/* ================================
+   ERRORS
+================================ */
+
+.error {
+  color: #d00000;
+
+  font-size: 13px;
+
+  margin: 5px 0;
+}
+
+.error-input {
+  border: 2px solid #d00000 !important;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.form-buttons {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 25px;
+}
+
+.form-buttons button {
+  flex: 1;
+
+  padding: 13px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+}
+
+.cancel-button {
+  background: #ddd;
+}
+
+.confirm-button {
+  background: #e50914;
+  color: white;
+}
+
+.confirm-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================================
+   SUCCESS
+================================ */
+
+.success-modal {
+  width: 100%;
+  max-width: 500px;
+
+  margin: auto;
+
+  padding: 40px;
+
+  background: white;
+
+  border-radius: 16px;
+
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 70px;
+}
+
+.success-modal h1 {
+  margin-bottom: 10px;
+}
+
+.booking-summary {
+  background: #f5f5f5;
+
+  padding: 20px;
+
+  margin: 25px 0;
+
+  border-radius: 10px;
+
+  text-align: left;
+}
+
+.booking-summary p {
+  margin: 10px 0;
+}
+
+.booking-id {
+  font-weight: bold;
+}
+
+.success-modal button {
+  width: 100%;
+
+  padding: 13px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #111;
+
+  color: white;
+
+  font-size: 16px;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+  .app {
+    padding: 20px 10px;
+  }
+
+  .seat-options {
+    grid-template-columns: 1fr;
+  }
+
+  .modal {
+    padding: 18px;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+}

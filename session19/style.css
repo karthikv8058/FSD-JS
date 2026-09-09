@@ -1,0 +1,9 @@
+.selected {
+    border: #f5279f solid 5px;
+}
+.hidden {
+    display: none;
+}
+.toggle {
+    display: block;
+}

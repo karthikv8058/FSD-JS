@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <button id="addName">Add name</button>
+    <script>
+
+        // const addName = document.querySelector("#addName");
+        // const userName = sessionStorage.getItem("name") || undefined;
+        // console.log("User name from local storage :", userName);
+        // addName.addEventListener("click", (e) => {
+        //     sessionStorage.setItem("name", "karthik");
+        // })
+
+        const userDetails = {
+            id: 1,
+            name: "Karthik",
+        };
+        localStorage.setItem("userObj", JSON.stringify(userDetails));
+        localStorage.setItem("name", "Karthik");
+        const userName = localStorage.getItem("name");
+        const userDetailsObj = JSON.parse(localStorage.getItem("userObj"));
+        console.log("User name from local storage :", userName);
+
+    </script> -->
+
+    <script>
+        // const student = {
+        //     name: "Arun",
+        //     // showName: () => {
+        //     //     console.log("Hello", this.name);
+
+        //     // },
+        //     showName() {
+        //         console.log("Hello", this.name);
+
+        //     }
+        // }
+        // // window
+        // student.showName();
+
+
+        // const stdFn = student.showName;
+        // fix
+        // const stdFn = student.showName.bind(student);
+        // stdFn();
+
+        // function greet(city) {
+        //     console.log(`Hi, I'm ${this.name} from ${city}`);
+        // }
+        // const user = {
+        //     name: "Arun",
+        // };
+        // greet.call(user, "TVM", "");
+        // greet.apply(user, ["TVM", ""]);
+
+    </script>
+
+    <script>
+        const productPrototype = {
+            getLabel() {
+                return `${this.name} - ${this.price}`;
+            }
+        };
+
+        const phone = Object.create(productPrototype);
+        phone.id = 1;
+        phone.name = "iPhone 15";
+        phone.price = 61000;
+
+        const watch = Object.create(productPrototype);
+        watch.id = 2;
+        watch.name = "Smart watch";
+        watch.price = 8000;
+
+        console.log("PRODUCT PROTO :", phone.getLabel());
+        // console.log("PRODUCT PROTO :", watch.getLabel());
+        console.log("Name property check :", phone.hasOwnProperty("name"));
+
+        const cartManager = {
+            cart: JSON.parse(localStorage.getItem("shoppingCart") || "[]"),
+            addItem(product) {
+                if (this.cart.some(item => item.id === product.id)) {
+                    console.log(`${product.name} already exists!!!`);
+                    return;
+                }
+                this.cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                });
+                localStorage.setItem("shoppingCart", JSON.stringify(this.cart));
+                console.log(`Added: ${product.name}`);
+            },
+            getTotal() {
+                return this.cart.reduce((sum, item) => sum + item.price, 0);
+            },
+            showCart() {
+                console.log("Cart Items :");
+                this.cart.forEach((item) => {
+                    console.log(`- ${item.name} : ${item.price}`);
+                });
+                console.log(`TOTAL : ${this.getTotal()}`);
+
+            },
+        };
+
+        cartManager.addItem(phone);
+        cartManager.addItem(watch);
+        cartManager.showCart();
+
+        // const totalAmount = cartManager.getTotal;
+
+        // fix
+        const totalAmount = cartManager.getTotal.bind(cartManager); // bind ( this )
+
+        console.log("Total Amount :", totalAmount());
+
+        function applyDiscount(discount, message) {
+            const disPrice = this.getTotal() - discount;
+            console.log(`${message}, Final amount : ${disPrice}`);
+        }
+
+        // applyDiscount.call(cartManager, 1000, "Festival offer!!!"); // args separate
+
+        applyDiscount.apply(cartManager, [1000, "Festival offer!!!"]); // args in array
+
+
+
+    </script>
+</body>
+
+</html>
