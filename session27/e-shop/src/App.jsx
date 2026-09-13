@@ -6,6 +6,8 @@ import Navlinks from "./components/routerComponents/Navlinks";
 import Home from "./components/routerComponents/Home";
 import ProductDetails from "./components/routerComponents/ProductDetails";
 import NotFound from "./components/routerComponents/NotFound";
+import ProductAddSearch from "./components/routerComponents/ProductAddSearch";
+import TodoList from "./components/TodoList";
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
         <Route path="/products" element={<Products />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/products/:id" element={<ProductDetails />}></Route>
+        <Route path="/search" element={<ProductAddSearch />}></Route>
+        <Route path="/movie" element={<MovieApp />}></Route>
+        <Route path="/todo" element={<TodoList />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>

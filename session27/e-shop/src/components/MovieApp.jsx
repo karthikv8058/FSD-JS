@@ -13,7 +13,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 
-import api from "../api/axiosInstance";
+import useFetch from "../customHooks/useFetch";
 
 function MovieApp() {
   // =========================
@@ -21,7 +21,6 @@ function MovieApp() {
   // =========================
 
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchedMovies, setSearchedMovies] = useState([]);
 
@@ -44,31 +43,22 @@ function MovieApp() {
   });
 
   const [errors, setErrors] = useState({});
+  // const [errorApi, setApiError] = useState(null);
   const [touched, setTouched] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [serverError, setServerError] = useState("");
+
+  const { data, error: apiError, loading } = useFetch("/shows");
 
   // =========================
   // Fetch movies
   // =========================
 
   useEffect(() => {
-    const fetchAPI = async () => {
-      try {
-        const data = await api.get("/shows");
-
-        setMovies(data);
-        setSearchedMovies(data);
-      } catch (error) {
-        setError(error.name);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAPI();
-  }, []);
+    setMovies(data);
+    setSearchedMovies(data);
+  }, [data]);
 
   // =========================
   // Search movies
