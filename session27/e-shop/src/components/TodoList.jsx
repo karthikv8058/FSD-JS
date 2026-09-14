@@ -12,6 +12,7 @@ import {
 
 function TodoList() {
   const [todoItem, setTodoItem] = useState("");
+
   const [count, setCount] = useState(0);
 
   const [state, dispatch] = useReducer(todoReducer, TODO_INITIAL_STATE);
@@ -111,11 +112,8 @@ function TodoList() {
             />
           ))}
       </ListGroup>
-
-      <Button className="mt-5" onClick={() => setCount(count + 1)}>
-        Counter
-      </Button>
-      <FormLabel>{count}</FormLabel>
+      <Button onClick={() => setCount(count + 1)}>Update count</Button>
+      <h2>{count}</h2>
     </div>
   );
 }

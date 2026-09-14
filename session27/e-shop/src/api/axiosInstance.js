@@ -2,7 +2,7 @@ import axios from "axios";
 //https://jsonplaceholder.typicode.com
 const api = axios.create({
   baseURL: "https://api.tvmaze.com",
-  //   baseURL: "https://jsonplaceholder.typicode.com",
+  // baseURL: "https://jsonplaceholder.typicode.com",
   timeout: 8000,
   headers: {
     "Content-Type": "application/json",

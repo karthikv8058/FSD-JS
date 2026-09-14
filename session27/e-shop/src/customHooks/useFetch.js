@@ -15,7 +15,7 @@ function useFetch(url) {
       const data = await api.get(url);
       console.log("API data:", data);
 
-      setData(data.products);
+      setData(data.products ? data.products : data);
     } catch (error) {
       setError(error.name);
     } finally {

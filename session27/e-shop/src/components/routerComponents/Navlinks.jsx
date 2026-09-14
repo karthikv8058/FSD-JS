@@ -13,6 +13,10 @@ function Navlinks() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/products">Products</Nav.Link>
+            <Nav.Link href="/movies">Book Movies</Nav.Link>
+            <Nav.Link href="/todo">Todo List</Nav.Link>
+            <Nav.Link href="/search">Search Products</Nav.Link>
+            <Nav.Link href="/shopeasy">Shop Easy</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

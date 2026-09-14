@@ -55,6 +55,8 @@ function MovieApp() {
   // Fetch movies
   // =========================
 
+  console.log("Data from UseFetch >>>>>>", data);
+
   useEffect(() => {
     setMovies(data);
     setSearchedMovies(data);
