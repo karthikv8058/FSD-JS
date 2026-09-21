@@ -12,6 +12,9 @@
     {
       "path": "../../NodeJS",
     },
+    {
+      "path": "../../React-slate",
+    },
   ],
   "settings": {
     "liveServer.settings.multiRootWorkspaceName": "FSD-JS",

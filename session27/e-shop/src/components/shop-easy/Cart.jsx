@@ -1,19 +1,28 @@
 import { Container, Alert, Button, Card } from "react-bootstrap";
 
 import CartItem from "./CartItem";
-import { useSelector } from "react-redux";
-import { selectCartItems } from "../../store/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cartTotal,
+  clearCart,
+  selectCartCount,
+  selectCartItems,
+} from "../../store/cartSlice";
 
 function Cart() {
+  const dispatch = useDispatch();
+
+  //named selector
   const cartItems = useSelector(selectCartItems);
+  const cartCount = useSelector(selectCartCount);
+  const cartTotalAmount = useSelector(cartTotal);
 
-  console.log("Cart items :", cartItems);
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
 
-  const cartCount = 0;
-
-  const cartTotal = 0;
-
-  const handleClearCart = () => {};
+  //derived selector
+  // const filteredItems = cartItem.filter(.....)
 
   return (
     <Container className="mb-5">
@@ -48,7 +57,7 @@ function Cart() {
               <div className="d-flex justify-content-between fs-4">
                 <strong>Total</strong>
 
-                <strong>₹{cartTotal.toLocaleString("en-IN")}</strong>
+                <strong>₹{cartTotalAmount.toLocaleString("en-IN")}</strong>
               </div>
 
               <Button variant="success" className="w-100 mt-3">

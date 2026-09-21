@@ -1,11 +1,34 @@
 import { Card, Button, ButtonGroup } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { removeCartItem, updateQuantity } from "../../store/cartSlice";
 
 function CartItem({ item }) {
-  const increaseQuantity = () => {};
+  const dispatch = useDispatch();
+  const increaseQuantity = () => {
+    dispatch(
+      updateQuantity({
+        id: item.id,
+        quantity: item.quantity + 1,
+      }),
+    );
+  };
 
-  const decreaseQuantity = () => {};
+  const decreaseQuantity = () => {
+    dispatch(
+      updateQuantity({
+        id: item.id,
+        quantity: item.quantity - 1,
+      }),
+    );
+  };
 
-  const handleRemove = () => {};
+  const handleRemove = () => {
+    dispatch(
+      removeCartItem({
+        id: item.id,
+      }),
+    );
+  };
 
   return (
     <Card className="mb-3">
