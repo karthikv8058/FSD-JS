@@ -9,6 +9,7 @@ import NotFound from "./components/routerComponents/NotFound";
 import ProductAddSearch from "./components/routerComponents/ProductAddSearch";
 import TodoList from "./components/TodoList";
 import ShopEasy from "./components/shop-easy/ShopEasy";
+import DigitalClock from "./components/DigitalClock";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/search" element={<ProductAddSearch />}></Route>
         <Route path="/movies" element={<MovieApp />}></Route>
         <Route path="/todo" element={<TodoList />}></Route>
+        <Route path="/clock" element={<DigitalClock />}></Route>
         <Route path="shopeasy" element={<ShopEasy />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

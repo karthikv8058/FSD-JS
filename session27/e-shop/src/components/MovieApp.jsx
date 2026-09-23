@@ -23,6 +23,7 @@ function MovieApp() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [searchedMovies, setSearchedMovies] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // =========================
   // Booking states
@@ -54,8 +55,6 @@ function MovieApp() {
   // =========================
   // Fetch movies
   // =========================
-
-  console.log("Data from UseFetch >>>>>>", data);
 
   useEffect(() => {
     setMovies(data);
@@ -162,12 +161,21 @@ function MovieApp() {
       </Container>
     );
   }
+  // =========================
+  // Pagination
+  // =========================
+
+  const rowsPerPage = 6;
+  const totalPages = Math.ceil(searchedMovies.length / rowsPerPage);
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const currentMovies = searchedMovies.slice(
+    startIndex,
+    startIndex + rowsPerPage,
+  );
 
   // =========================
   // UI
   // =========================
-
-  console.log("bookingData :", bookingData, errors);
 
   return (
     <>
@@ -181,7 +189,7 @@ function MovieApp() {
         {/* Movie List */}
 
         <Row xs={1} sm={2} md={4} lg={6} className="g-4 mt-3">
-          {searchedMovies.map((movie) => {
+          {currentMovies.map((movie) => {
             const { id, name, image } = movie;
 
             return (
@@ -196,9 +204,51 @@ function MovieApp() {
           })}
         </Row>
 
+        <div className="d-flex justify-content-center align-items-center gap-2 mt-4 flex-wrap">
+          <Button
+            variant="outline-primary"
+            size="sm"
+            onClick={() => setCurrentPage(1)}
+            disabled={currentPage === 1}
+          >
+            First
+          </Button>
+
+          <Button
+            variant="outline-primary"
+            size="sm"
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+            disabled={currentPage === 1}
+          >
+            Prev
+          </Button>
+
+          <span className="mx-2 text-muted fw-semibold">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          <Button
+            variant="outline-primary"
+            size="sm"
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </Button>
+
+          <Button
+            variant="outline-primary"
+            size="sm"
+            onClick={() => setCurrentPage(totalPages)}
+            disabled={currentPage === totalPages}
+          >
+            Last
+          </Button>
+        </div>
+
         {/* No search result */}
 
-        {searchedMovies.length === 0 && (
+        {currentMovies.length === 0 && (
           <Alert variant="warning" className="mt-4 text-center">
             No movies found.
           </Alert>
